@@ -3,4 +3,4 @@
 require 'sdbport'
 require 'sdbport/cli'
 
-Sdbport::CLI.start
+Sdbport::CLI.new.start
