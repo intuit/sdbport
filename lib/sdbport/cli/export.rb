@@ -7,7 +7,7 @@ module Sdbport
       def export
         opts   = read_options
         domain = Domain.new opts
-        domain.export :output => opts[:output]
+        domain.export
       end
 
       def read_options

@@ -6,6 +6,7 @@ module Sdbport
   class CLI
 
     def start
+
       cmd = ARGV.shift
 
       case cmd

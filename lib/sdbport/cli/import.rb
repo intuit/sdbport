@@ -7,7 +7,7 @@ module Sdbport
       def import
         opts   = read_options
         domain = Domain.new opts
-        domain.export :output => opts[:output]
+        domain.import
       end
 
       def read_options
@@ -15,13 +15,13 @@ module Sdbport
           version Sdbport::VERSION
           banner <<-EOS
 
-  Import SimpleDB domain.
+Import SimpleDB domain.
 
-  Usage:
+Usage:
 
-  sdbport import -a xxx -k yyy -r us-west-1 -i /tmp/file -n domain
+sdbport import -a xxx -k yyy -r us-west-1 -i /tmp/file -n domain
 
-  EOS
+EOS
           opt :help, "Display Help"
           opt :name, "Simple DB Domain Name", :type => :string
           opt :input, "Input File", :type => :string
