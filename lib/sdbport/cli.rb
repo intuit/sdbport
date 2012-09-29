@@ -1,6 +1,7 @@
 require 'trollop'
-require 'sdbport/cli/import'
 require 'sdbport/cli/export'
+require 'sdbport/cli/import'
+require 'sdbport/cli/purge'
 
 module Sdbport
   class CLI
@@ -14,6 +15,8 @@ module Sdbport
         CLI::Export.new.export
       when 'import'
         CLI::Import.new.import
+      when 'purge'
+        CLI::Purge.new.purge
       end
     end
 

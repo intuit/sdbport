@@ -1,35 +1,39 @@
 require 'json'
+require 'sdbport/domain/export'
+require 'sdbport/domain/import'
+require 'sdbport/domain/purge'
 
 module Sdbport
   class Domain
 
-    def initialize(options)
-      @name     = options[:name]
-      @output   = options[:output]
-      @input    = options[:input]
-      @simpledb = AWS::SimpleDB.new options
+    def initialize(args)
+      @args = args
     end
 
-    def export
-      items = @simpledb.select "select * from #{@name}"
-      file = File.open(@output, 'w')
-      items.each do |item|
-        file.write item.to_s + "\n"
-      end
+    def import(input)
+      domain_import.import input
     end
 
-    def import
-      file = File.open(@input, 'r')
-      while (line = file.gets)
-        puts line
-      end
-      file.close
+    def output(output)
+      domain_import.export output
+    end
+
+    def purge
+      domain_import.purge
     end
 
     private
 
-    def convert_item_to_json(item)
-      item.to_json
+    def domain_import
+      @domain_import ||= Domain::Import.new @args
+    end
+
+    def domain_export
+      @domain_export ||= Domain::Export.new @args
+    end
+
+    def domain_purge
+      @domain_purge ||= Domain::Purge.new @args
     end
 
   end

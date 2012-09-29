@@ -1,13 +1,16 @@
-require 'trollop'
-
 module Sdbport
   class CLI
     class Export
 
       def export
         opts   = read_options
-        domain = Domain.new opts
-        domain.export
+        logger = SdbportLogger.new
+        domain = Domain.new :name       => opts[:name],
+                            :region     => opts[:region],
+                            :access_key => opts[:access_key],
+                            :secret_key => opts[:secret_key],
+                            :logger     => logger
+        domain.export opts[:output]
       end
 
       def read_options

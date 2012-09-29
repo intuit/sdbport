@@ -1,8 +1,8 @@
 module Sdbport
   class CLI
-    class Import
+    class Purge
 
-      def import
+      def purge
         opts   = read_options
         logger = SdbportLogger.new
         domain = Domain.new :name       => opts[:name],
@@ -10,7 +10,7 @@ module Sdbport
                             :access_key => opts[:access_key],
                             :secret_key => opts[:secret_key],
                             :logger     => logger
-        domain.import opts[:input]
+        domain.purge
       end
 
       def read_options
@@ -18,16 +18,15 @@ module Sdbport
           version Sdbport::VERSION
           banner <<-EOS
 
-Import SimpleDB domain.
+Purge all entries from a SimpleDB domain.
 
 Usage:
 
-sdbport import -a xxx -k yyy -r us-west-1 -i /tmp/file -n domain
+sdbport purge -a xxx -k yyy -r us-west-1 -n domain
 
 EOS
           opt :help, "Display Help"
           opt :name, "Simple DB Domain Name", :type => :string
-          opt :input, "Input File", :type => :string
           opt :region, "AWS region", :type => :string
           opt :access_key, "AWS Access Key ID", :type => :string
           opt :secret_key, "AWS Secret Access Key", :type => :string

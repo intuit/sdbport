@@ -8,6 +8,7 @@ module Sdbport
         access_key = args[:access_key]
         secret_key = args[:secret_key]
         region     = args[:region]
+
         options =  { :aws_access_key_id     => access_key,
                      :aws_secret_access_key => secret_key,
                      :region                => region }
@@ -22,6 +23,14 @@ module Sdbport
       def count(domain)
         body = @sdb.select("SELECT count(*) FROM `#{domain}`").body
         body['Items']['Domain']['Count'].first.to_i
+      end
+
+      def domain_empty?(domain)
+        count(domain).zero?
+      end
+
+      def put_attributes(domain, key, attributes, options = {})
+        @sdb.put_attributes domain, key, attributes, options
       end
 
     end
