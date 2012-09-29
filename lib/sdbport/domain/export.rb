@@ -5,10 +5,12 @@ module Sdbport
     class Export
 
       def initialize(args)
-        @name     = args[:name]
-        @logger   = args[:logger]
-        @region   = args[:region]
-        @simpledb = AWS::SimpleDB.new args
+        @name       = args[:name]
+        @logger     = args[:logger]
+        @region     = args[:region]
+        @access_key = args[:access_key]
+        @secret_key = args[:secret_key]
+        @region     = args[:region]
       end
 
       def export(output)
@@ -23,8 +25,14 @@ module Sdbport
 
       private
 
+      def sdb
+        @sdb ||= AWS::SimpleDB.new :access_key => @access_key,
+                                   :secret_key => @secret_key,
+                                   :region     => @region
+      end
+
       def export_domain
-        @simpledb.select "select * from #{@name}"
+        sdb.select "select * from #{@name}"
       end
 
       def convert_to_string(item)

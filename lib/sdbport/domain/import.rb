@@ -5,10 +5,12 @@ module Sdbport
     class Import
 
       def initialize(args)
-        @name     = args[:name]
-        @logger   = args[:logger]
-        @region   = args[:region]
-        @simpledb = AWS::SimpleDB.new args
+        @name       = args[:name]
+        @logger     = args[:logger]
+        @region     = args[:region]
+        @access_key = args[:access_key]
+        @secret_key = args[:secret_key]
+        @region     = args[:region]
       end
 
       def import(input)
@@ -26,8 +28,14 @@ module Sdbport
 
       private
 
+      def sdb
+        @sdb ||= AWS::SimpleDB.new :access_key => @access_key,
+                                   :secret_key => @secret_key,
+                                   :region     => @region
+      end
+
       def create_domain
-        @simpledb.create_domain @name
+        sdb.create_domain @name
       end
 
       def add_line(line)
@@ -35,11 +43,11 @@ module Sdbport
         id = data.first
         attributes = data.last
         @logger.debug "Adding #{id} with attributes #{attributes.to_s}."
-        @simpledb.put_attributes @name, id, attributes
+        sdb.put_attributes @name, id, attributes
       end
 
       def ensure_domain_empty
-        if @simpledb.domain_empty? @name
+        if sdb.domain_empty? @name
           true
         else
           @logger.error "Domain #{@name} in #{@region} not empty."
