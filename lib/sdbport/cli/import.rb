@@ -10,7 +10,9 @@ module Sdbport
                             :access_key => opts[:access_key],
                             :secret_key => opts[:secret_key],
                             :logger     => logger
-        domain.import opts[:input]
+        unless domain.import opts[:input]
+          exit 1
+        end
       end
 
       def read_options

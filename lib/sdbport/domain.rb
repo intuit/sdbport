@@ -1,4 +1,3 @@
-require 'json'
 require 'sdbport/domain/export'
 require 'sdbport/domain/import'
 require 'sdbport/domain/purge'
@@ -15,7 +14,7 @@ module Sdbport
     end
 
     def output(output)
-      domain_import.export output
+      domain_export.export output
     end
 
     def purge

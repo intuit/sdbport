@@ -13,20 +13,24 @@ module Sdbport
 
       def export(output)
         @logger.info "Export #{@name} in #{@region} to #{output}"
-        items = @simpledb.select "select * from #{@name}"
         file = File.open(output, 'w')
-        items.each do |item| 
-          file.write convert_to_string(item) 
+        export_domain.each do |item| 
+          file.write convert_to_string item
           file.write "\n"
         end
+        file.close
       end
 
       private
 
+      def export_domain
+        @simpledb.select "select * from #{@name}"
+      end
+
       def convert_to_string(item)
         item.to_json
       end
-    end
 
+    end
   end
 end
