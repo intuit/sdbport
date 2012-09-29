@@ -15,10 +15,6 @@ module Sdbport
         @sdb = Fog::AWS::SimpleDB.new options
       end
 
-      def export
-        select "select * from heirloom"
-      end
-
       def select(query)
         @sdb.select(query).body['Items']
       end
