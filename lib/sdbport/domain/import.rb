@@ -12,20 +12,31 @@ module Sdbport
       end
 
       def import(input)
+        create_domain
+
         return false unless ensure_domain_empty
 
         @logger.info "Importing #{@name} in #{@region} from #{input}."
         file = File.open(input, 'r')
         while (line = file.gets)
-          data = JSON.parse line.chomp
-          id = data.first
-          attributes = data.last
-          put_attributes @name, id, attributes
+          add_line line
         end
         file.close
       end
 
       private
+
+      def create_domain
+        @simpledb.create_domain @name
+      end
+
+      def add_line(line)
+        data = JSON.parse line.chomp
+        id = data.first
+        attributes = data.last
+        @logger.debug "Adding #{id} with attributes #{attributes.to_s}."
+        @simpledb.put_attributes @name, id, attributes
+      end
 
       def ensure_domain_empty
         if @simpledb.domain_empty? @name

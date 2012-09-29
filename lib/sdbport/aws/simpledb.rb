@@ -10,6 +10,18 @@ module Sdbport
         @region     = args[:region]
       end
 
+      def domains
+        sdb.list_domains.body['Domains']
+      end
+
+      def domain_exists?(domain)
+        domains.include? domain
+      end
+
+      def create_domain(domain)
+        sdb.create_domain(domain) unless domain_exists?(domain)
+      end
+
       def select(query)
         sdb.select(query).body['Items']
       end
@@ -25,6 +37,10 @@ module Sdbport
 
       def put_attributes(domain, key, attributes, options = {})
         sdb.put_attributes domain, key, attributes, options
+      end
+
+      def delete(domain, key)
+        @sdb.delete_attributes domain, key
       end
 
       private

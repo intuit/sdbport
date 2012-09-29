@@ -4,7 +4,7 @@ module Sdbport
 
       def import
         opts   = read_options
-        logger = SdbportLogger.new
+        logger = SdbportLogger.new :log_level => opts[:level]
         domain = Domain.new :name       => opts[:name],
                             :region     => opts[:region],
                             :access_key => opts[:access_key],
@@ -28,6 +28,7 @@ sdbport import -a xxx -k yyy -r us-west-1 -i /tmp/file -n domain
 
 EOS
           opt :help, "Display Help"
+          opt :level, "Log Level", :type => :string, :default => 'info'
           opt :name, "Simple DB Domain Name", :type => :string
           opt :input, "Input File", :type => :string
           opt :region, "AWS region", :type => :string

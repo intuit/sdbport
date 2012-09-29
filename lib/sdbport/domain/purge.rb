@@ -11,6 +11,11 @@ module Sdbport
 
       def purge
         @logger.info "Purging #{@name} in #{@region}."
+        data = @simpledb.select "select * from #{@name}"
+        data.keys.each do |key|
+          @logger.debug "Deleting #{key}."
+          @simpledb.delete @name, key
+        end
       end
 
     end

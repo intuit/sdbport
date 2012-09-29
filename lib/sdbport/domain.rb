@@ -13,12 +13,12 @@ module Sdbport
       domain_import.import input
     end
 
-    def output(output)
+    def export(output)
       domain_export.export output
     end
 
     def purge
-      domain_import.purge
+      domain_purge.purge
     end
 
     private
