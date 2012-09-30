@@ -31,7 +31,7 @@ module Sdbport
       end
 
       def export_domain
-        sdb.select_and_follow_next_token "select * from `#{@name}`"
+        sdb.select_and_follow_tokens "select * from `#{@name}`"
       end
 
       def convert_to_string(item)

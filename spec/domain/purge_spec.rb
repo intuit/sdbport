@@ -15,7 +15,7 @@ describe Sdbport do
     result = { 'item1' =>
                { 'attribute' => [ 'value' ] }
              }
-    @sdb_mock.should_receive(:select_and_follow_next_token).
+    @sdb_mock.should_receive(:select_and_follow_tokens).
               with('select * from `name`').
               and_return result 
     @sdb_mock.should_receive(:delete).with 'name', 'item1'
