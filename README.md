@@ -1,3 +1,5 @@
+{<img src="http://travis-ci.org/brettweavnet/sdbport.png">}[http://travis-ci.org/brettweavnet/sdbport]
+
 # Sdbport
 
 Sdbport exports & imports data from AWS SimpleDB domains. It can be used as a class or stand alone CLI.
