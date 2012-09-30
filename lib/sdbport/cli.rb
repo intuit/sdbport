@@ -17,7 +17,14 @@ module Sdbport
         CLI::Import.new.import
       when 'purge'
         CLI::Purge.new.purge
+      when '-v'
+        puts Sdbport::VERSION
+      else
+        puts "Unkown command: '#{cmd}'." unless cmd == '-h'
+        puts "sdbport [export|import|purge] OPTIONS"
+        puts "Append -h for help on specific subcommand."
       end
+ 
     end
 
   end

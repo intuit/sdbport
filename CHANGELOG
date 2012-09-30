@@ -1,3 +1,5 @@
 ## Head:
 
-* first revision
+* Added export subcommand
+* Added import subcommand
+* Added purge subcommand

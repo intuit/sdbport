@@ -12,7 +12,7 @@ module Sdbport
 
       def purge
         @logger.info "Purging #{@name} in #{@region}."
-        data = sdb.select "select * from #{@name}"
+        data = sdb.select "select * from `#{@name}`"
         data.keys.each do |key|
           @logger.debug "Deleting #{key}."
           sdb.delete @name, key

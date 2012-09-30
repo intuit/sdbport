@@ -31,7 +31,7 @@ module Sdbport
       end
 
       def export_domain
-        sdb.select "select * from #{@name}"
+        sdb.select "select * from `#{@name}`"
       end
 
       def convert_to_string(item)

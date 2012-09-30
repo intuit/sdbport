@@ -16,7 +16,7 @@ describe Sdbport do
                { 'attribute' => [ 'value' ] }
              }
     @sdb_mock.should_receive(:select).
-              with('select * from name').
+              with('select * from `name`').
               and_return result 
     @sdb_mock.should_receive(:delete).with 'name', 'item1'
     @purge.purge

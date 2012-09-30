@@ -8,6 +8,49 @@ gem install sdbport
 
 ## Usage
 
+Set your AWS credentials:
+
+```
+export AWS_ACCESS_KEY_ID=key
+export AWS_SECRET_ACCESS_KEY=secret
+```
+
+Export SimpleDB domain:
+
+```
+sdbport export -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n test -o /tmp/test-domain-dump
+```
+
+Import into new domain:
+
+```
+sdbport import -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n new-domain -i /tmp/test-domain-dump
+```
+
+Purge new domain:
+
+```
+sdbport purge -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n new-domain
+```
+
+To list CLI subcommands:
+
+```
+sdbport -h
+```
+
+For details help on specific subcommand:
+
+```
+sdbport export -h
+```
+
+## Known Limitations
+
+* Only performs a single query for exports, which gives it a maxmimum of 1,000 entries.
+* Single serialiazed process.
+* Only supports importing into empty domain.
+
 ## Contributing
 
 1. Fork it
