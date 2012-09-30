@@ -4,7 +4,7 @@ describe Sdbport do
 
   before do
     @fog_mock = mock 'fog'
-    @body_stub = mock 'body'
+    @body_stub = stub 'body'
     Fog::AWS::SimpleDB.should_receive(:new).
                        with(:aws_access_key_id     => 'the-key',
                             :aws_secret_access_key => 'the-secret',
@@ -20,6 +20,42 @@ describe Sdbport do
     @body_stub.should_receive(:body).
                and_return 'Domains' => ['domain1']
     @sdb.domains.should == ['domain1']
+  end
+
+  it "should perform select query given" do
+    @fog_mock.should_receive(:select).
+              with('select * from name', 'ConsistentRead' => true).
+              and_return @body_stub
+    @body_stub.stub :body => 'thegoods'
+    @sdb.select('select * from name', 'ConsistentRead' => true).
+         should == 'thegoods'
+  end
+
+  it "should perform select query given and next tokens" do
+    body_stub0 = stub 'body0', :body => { 'Items' => 
+                                            { 'id1' => 'val1' }, 
+                                          'NextToken' => '1' 
+                                        }
+    body_stub1 = stub 'body1', :body => { 'Items' => 
+                                            { 'id2' => 'val2' }, 
+                                          'NextToken' => '2' 
+                                        }
+    body_stub2 = stub 'body2', :body => { 'Items' => 
+                                            { 'id3' => 'val3' }
+                                        }
+    @fog_mock.should_receive(:select).
+              with('select * from name', 'NextToken' => nil).
+              and_return body_stub0
+    @fog_mock.should_receive(:select).
+              with('select * from name', 'NextToken' => '1').
+              and_return body_stub1
+    @fog_mock.should_receive(:select).
+              with('select * from name', 'NextToken' => '2').
+              and_return body_stub2
+    @sdb.select_and_follow_tokens('select * from name').
+         should == { 'id1' => 'val1',
+                     'id2' => 'val2',
+                     'id3' => 'val3' }
   end
 
   it "should create a new domain when it does not exist" do

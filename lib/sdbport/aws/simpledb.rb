@@ -22,8 +22,21 @@ module Sdbport
         sdb.create_domain(domain) unless domain_exists?(domain)
       end
 
-      def select(query)
-        sdb.select(query).body['Items']
+      def select(query, options = {})
+        sdb.select(query, options).body
+      end
+
+      def select_and_follow_tokens(query, options = {})
+        data = {}
+        next_token = nil
+        final_token = false
+        while true
+          options.merge! 'NextToken' => next_token
+          chunk = sdb.select(query, options).body
+          data.merge! chunk['Items']
+          next_token = chunk['NextToken']
+          return data unless next_token
+        end
       end
 
       def count(domain)
