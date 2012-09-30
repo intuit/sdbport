@@ -5,7 +5,6 @@ module Sdbport
       def initialize(args)
         @name       = args[:name]
         @logger     = args[:logger]
-        @region     = args[:region]
         @access_key = args[:access_key]
         @secret_key = args[:secret_key]
         @region     = args[:region]
