@@ -7,7 +7,6 @@ module Sdbport
       def initialize(args)
         @name       = args[:name]
         @logger     = args[:logger]
-        @region     = args[:region]
         @access_key = args[:access_key]
         @secret_key = args[:secret_key]
         @region     = args[:region]
@@ -24,13 +23,13 @@ module Sdbport
         while (line = file.gets)
           add_line line
         end
-        file.close
+        true
       end
 
       private
 
       def create_domain
-        sdb.create_domain @name
+        sdb.create_domain_unless_present @name
       end
 
       def add_line(line)

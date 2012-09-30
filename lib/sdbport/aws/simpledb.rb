@@ -18,7 +18,7 @@ module Sdbport
         domains.include? domain
       end
 
-      def create_domain(domain)
+      def create_domain_unless_present(domain)
         sdb.create_domain(domain) unless domain_exists?(domain)
       end
 

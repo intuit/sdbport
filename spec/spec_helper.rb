@@ -13,6 +13,16 @@ def sdb_mock
   sdb_mock
 end
 
+def logger_mock
+  logger_mock = mock 'logger'
+  logger_mock.stub :info => true, :debug => true
+  logger_mock
+end
+
+def logger_stub
+  stub 'logger_stub', :info => true, :debug => true
+end
+
 RSpec.configure do |config|
   #spec config
 end

@@ -2,14 +2,13 @@ require 'spec_helper'
 
 describe Sdbport do
   before do
-    @logger_stub = stub 'logger', :debug => true, 
-                                  :info  => true
+    @logger_stub = logger_stub
+    @sdb_mock = sdb_mock
     @purge = Sdbport::Domain::Purge.new :name       => 'name',
                                         :logger     => @logger_stub,
                                         :access_key => 'the-key',
                                         :secret_key => 'the-secret',
                                         :region     => 'us-west-1'
-    @sdb_mock = sdb_mock
   end
 
   it "should puge the given domain" do

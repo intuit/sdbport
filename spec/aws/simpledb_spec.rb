@@ -26,19 +26,19 @@ describe Sdbport do
     @fog_mock.stub :list_domains => @body_stub
     @body_stub.stub :body => { 'Domains' => [] }
     @fog_mock.should_receive(:create_domain).with('new_domain')
-    @sdb.create_domain('new_domain')
-  end
-
-  it "should destroy the specified domain" do
-    @fog_mock.should_receive(:delete_domain).with('new_domain')
-    @sdb.delete_domain('new_domain')
+    @sdb.create_domain_unless_present('new_domain')
   end
 
   it "should not create a new domain when already exists" do
     @fog_mock.stub :list_domains => @body_stub
     @body_stub.stub :body => { 'Domains' => ['new_domain'] }
     @fog_mock.should_receive(:create_domain).exactly(0).times
-    @sdb.create_domain('new_domain')
+    @sdb.create_domain_unless_present('new_domain')
+  end
+
+  it "should destroy the specified domain" do
+    @fog_mock.should_receive(:delete_domain).with('new_domain')
+    @sdb.delete_domain('new_domain')
   end
 
   it "should update the attributes for an item" do

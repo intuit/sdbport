@@ -7,7 +7,6 @@ module Sdbport
       def initialize(args)
         @name       = args[:name]
         @logger     = args[:logger]
-        @region     = args[:region]
         @access_key = args[:access_key]
         @secret_key = args[:secret_key]
         @region     = args[:region]
@@ -20,7 +19,7 @@ module Sdbport
           file.write convert_to_string item
           file.write "\n"
         end
-        file.close
+        return true if file.close.nil?
       end
 
       private
