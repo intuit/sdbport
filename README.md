@@ -43,8 +43,7 @@ sdbport export -h
 
 ## Known Limitations
 
-* Only performs a single query for exports, which gives it a maxmimum of 1,000 entries.
-* Single serialiazed process.
+* Single serialiazed process for import. Need to switch to batch put attributes.
 * Only supports importing into empty domain.
 
 ## Contributing
