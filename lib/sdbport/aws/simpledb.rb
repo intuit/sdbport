@@ -26,17 +26,16 @@ module Sdbport
         sdb.select(query, options).body
       end
 
-      def select_and_follow_next_token(query)
-        final_token = false
-        next_token = ""
+      def select_and_follow_tokens(query)
         data = {}
-        until final_token == true
+        next_token = nil
+        final_token = false
+        while true
           chunk = sdb.select(query, 'NextToken' => next_token)
           data.merge! chunk['Items']
-          next_token = chunk['NextToken'] if chunk['NextToken']
-          final_token = true unless chunk['NextToken']
+          next_token = chunk['NextToken']
+          return data unless next_token
         end
-        data
       end
 
       def count(domain)

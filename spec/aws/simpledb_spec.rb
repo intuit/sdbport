@@ -4,7 +4,7 @@ describe Sdbport do
 
   before do
     @fog_mock = mock 'fog'
-    @body_stub = mock 'body'
+    @body_stub = stub 'body'
     Fog::AWS::SimpleDB.should_receive(:new).
                        with(:aws_access_key_id     => 'the-key',
                             :aws_secret_access_key => 'the-secret',
@@ -22,8 +22,33 @@ describe Sdbport do
     @sdb.domains.should == ['domain1']
   end
 
-  it "should perform select query given"
-  it "should perform select query given and follow next token"
+  it "should perform select query given" do
+    @fog_mock.should_receive(:select).
+              with('select * from name', 'ConsistentRead' => true).
+              and_return @body_stub
+    @body_stub.stub :body => 'thegoods'
+    @sdb.select('select * from name', 'ConsistentRead' => true).
+         should == 'thegoods'
+  end
+
+  it "should perform select query given and next tokens" do
+    @body_mock = mock 'body'
+    @fog_mock.should_receive(:select).
+              with('select * from name', 'NextToken' => nil).
+              and_return({ 'Items' => { 'id1' => 'val1' },
+                           'NextToken' => '1' })
+    @fog_mock.should_receive(:select).
+              with('select * from name', 'NextToken' => '1').
+              and_return({ 'Items' => { 'id2' => 'val2' },
+                           'NextToken' => '2' })
+    @fog_mock.should_receive(:select).
+              with('select * from name', 'NextToken' => '2').
+              and_return({ 'Items' => { 'id3' => 'val3' } })
+    @sdb.select_and_follow_tokens('select * from name').
+         should == { 'id1' => 'val1',
+                     'id2' => 'val2',
+                     'id3' => 'val3' }
+  end
 
   it "should create a new domain when it does not exist" do
     @fog_mock.stub :list_domains => @body_stub
