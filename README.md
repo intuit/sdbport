@@ -29,12 +29,6 @@ Import into new domain:
 sdbport import -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n new-domain -i /tmp/test-domain-dump
 ```
 
-Purge domain:
-
-```
-sdbport purge -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n new-domain
-```
-
 To list CLI subcommands:
 
 ```
