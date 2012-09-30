@@ -20,7 +20,7 @@ describe Sdbport do
              'item2' =>
              { 'attribute' => [ 'different' ] }
            }
-    @sdb_mock.should_receive(:select).
+    @sdb_mock.should_receive(:select_and_follow_next_token).
               with('select * from `name`').
               and_return data
     @file_mock.should_receive(:write).with("[\"item1\",{\"attribute\":[\"value\"]}]")

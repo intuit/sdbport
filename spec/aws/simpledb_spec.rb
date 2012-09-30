@@ -22,6 +22,9 @@ describe Sdbport do
     @sdb.domains.should == ['domain1']
   end
 
+  it "should perform select query given"
+  it "should perform select query given and follow next token"
+
   it "should create a new domain when it does not exist" do
     @fog_mock.stub :list_domains => @body_stub
     @body_stub.stub :body => { 'Domains' => [] }
