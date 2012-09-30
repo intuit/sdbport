@@ -26,12 +26,13 @@ module Sdbport
         sdb.select(query, options).body
       end
 
-      def select_and_follow_tokens(query)
+      def select_and_follow_tokens(query, options = {})
         data = {}
         next_token = nil
         final_token = false
         while true
-          chunk = sdb.select(query, 'NextToken' => next_token)
+          options.merge! 'NextToken' => next_token
+          chunk = sdb.select(query, options).body
           data.merge! chunk['Items']
           next_token = chunk['NextToken']
           return data unless next_token

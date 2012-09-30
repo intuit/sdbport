@@ -32,18 +32,26 @@ describe Sdbport do
   end
 
   it "should perform select query given and next tokens" do
-    @body_mock = mock 'body'
+    body_stub0 = stub 'body0', :body => { 'Items' => 
+                                            { 'id1' => 'val1' }, 
+                                          'NextToken' => '1' 
+                                        }
+    body_stub1 = stub 'body1', :body => { 'Items' => 
+                                            { 'id2' => 'val2' }, 
+                                          'NextToken' => '2' 
+                                        }
+    body_stub2 = stub 'body2', :body => { 'Items' => 
+                                            { 'id3' => 'val3' }
+                                        }
     @fog_mock.should_receive(:select).
               with('select * from name', 'NextToken' => nil).
-              and_return({ 'Items' => { 'id1' => 'val1' },
-                           'NextToken' => '1' })
+              and_return body_stub0
     @fog_mock.should_receive(:select).
               with('select * from name', 'NextToken' => '1').
-              and_return({ 'Items' => { 'id2' => 'val2' },
-                           'NextToken' => '2' })
+              and_return body_stub1
     @fog_mock.should_receive(:select).
               with('select * from name', 'NextToken' => '2').
-              and_return({ 'Items' => { 'id3' => 'val3' } })
+              and_return body_stub2
     @sdb.select_and_follow_tokens('select * from name').
          should == { 'id1' => 'val1',
                      'id2' => 'val2',
