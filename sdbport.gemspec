@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Sdbport::VERSION
   gem.authors       = ["Brett Weaver"]
   gem.email         = ["brett@weav.net"]
-  gem.description   = %q{I import and export simpledb domains}
-  gem.summary       = %q{I import and export simpledb domains}
+  gem.description   = %q{Import and export AWS SimpleDB domains.}
+  gem.summary       = %q{Import and export AWS SimpleDB domains.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)

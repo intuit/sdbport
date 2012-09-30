@@ -1,24 +1,12 @@
 # Sdbport
 
-TODO: Write a gem description
+Sdbport exports & imports data from AWS SimpleDB domains. It can be used as a class or stand alone CLI.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'sdbport'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install sdbport
+gem install sdbport
 
 ## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
