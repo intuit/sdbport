@@ -39,8 +39,12 @@ module Sdbport
         sdb.put_attributes domain, key, attributes, options
       end
 
+      def delete_domain(domain)
+        sdb.delete_domain(domain)
+      end
+
       def delete(domain, key)
-        @sdb.delete_attributes domain, key
+        sdb.delete_attributes domain, key
       end
 
       private

@@ -19,6 +19,7 @@ module Sdbport
         return false unless ensure_domain_empty
 
         @logger.info "Importing #{@name} in #{@region} from #{input}."
+
         file = File.open(input, 'r')
         while (line = file.gets)
           add_line line
@@ -28,20 +29,16 @@ module Sdbport
 
       private
 
-      def sdb
-        @sdb ||= AWS::SimpleDB.new :access_key => @access_key,
-                                   :secret_key => @secret_key,
-                                   :region     => @region
-      end
-
       def create_domain
         sdb.create_domain @name
       end
 
       def add_line(line)
-        data = JSON.parse line.chomp
-        id = data.first
+        line.chomp!
+        data       = JSON.parse line
+        id         = data.first
         attributes = data.last
+
         @logger.debug "Adding #{id} with attributes #{attributes.to_s}."
         sdb.put_attributes @name, id, attributes
       end
@@ -53,6 +50,12 @@ module Sdbport
           @logger.error "Domain #{@name} in #{@region} not empty."
           false
         end
+      end
+
+      def sdb
+        @sdb ||= AWS::SimpleDB.new :access_key => @access_key,
+                                   :secret_key => @secret_key,
+                                   :region     => @region
       end
 
     end
