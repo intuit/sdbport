@@ -1,4 +1,4 @@
-{<img src="http://travis-ci.org/brettweavnet/sdbport.png">}[http://travis-ci.org/brettweavnet/sdbport]
+[![Build Status](https://secure.travis-ci.org/brettweavnet/sdbport.png)](http://travis-ci.org/brettweavnet/sdbport)
 
 # Sdbport
 
