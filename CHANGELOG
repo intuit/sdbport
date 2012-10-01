@@ -1,5 +1,9 @@
 ## HEAD:
 
+## 0.2.1:
+
+* Adding support for read AWS creds from config file
+
 ## 0.2.0:
 
 * Added destroy subcommand
