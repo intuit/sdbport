@@ -3,9 +3,10 @@ module Sdbport
     class Export
 
       def export
-        opts   = read_options
-        logger = SdbportLogger.new :log_level => opts[:level]
-        domain = Domain.new :name       => opts[:name],
+        @config = Config.new
+        opts    = read_options
+        logger  = SdbportLogger.new :log_level => opts[:level]
+        domain  = Domain.new :name       => opts[:name],
                             :region     => opts[:region],
                             :access_key => opts[:access_key],
                             :secret_key => opts[:secret_key],
@@ -32,8 +33,10 @@ EOS
           opt :name, "Simple DB Domain Name", :type => :string
           opt :output, "Output File", :type => :string
           opt :region, "AWS region", :type => :string
-          opt :access_key, "AWS Access Key ID", :type => :string
-          opt :secret_key, "AWS Secret Access Key", :type => :string
+          opt :access_key, "AWS Access Key ID", :type    => :string,
+                                                :default => @config.access_key
+          opt :secret_key, "AWS Secret Access Key", :type    => :string,
+                                                    :default => @config.secret_key
         end
       end
     end
