@@ -1,8 +1,8 @@
 module Sdbport
   class CLI
-    class Purge
+    class Destroy
 
-      def purge
+      def destroy
         opts   = read_options
         logger = SdbportLogger.new :log_level => opts[:level]
         domain = Domain.new :name           => opts[:name],
@@ -10,7 +10,7 @@ module Sdbport
                             :access_key     => opts[:access_key],
                             :secret_key     => opts[:secret_key],
                             :logger         => logger
-          domain.purge
+        domain.destroy
       end
 
       def read_options
@@ -18,11 +18,11 @@ module Sdbport
           version Sdbport::VERSION
           banner <<-EOS
 
-Purge all entries from a SimpleDB domain.
+Destroy SimpleDB Domain
 
 Usage:
 
-sdbport purge -a xxx -k yyy -r us-west-1 -n domain
+sdbport destroy -a xxx -k yyy -r us-west-1 -n domain
 
 EOS
           opt :help, "Display Help"
