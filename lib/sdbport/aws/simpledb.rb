@@ -22,10 +22,6 @@ module Sdbport
         sdb.create_domain(domain) unless domain_exists?(domain)
       end
 
-      def select(query, options = {})
-        sdb.select(query, options).body
-      end
-
       def select_and_follow_tokens(query, options = {})
         data = {}
         next_token = nil
@@ -48,8 +44,8 @@ module Sdbport
         count(domain).zero?
       end
 
-      def put_attributes(domain, key, attributes, options = {})
-        sdb.put_attributes domain, key, attributes, options
+      def batch_put_attributes(domain,  attributes)
+        sdb.batch_put_attributes domain, attributes
       end
 
       def delete_domain(domain)

@@ -10,6 +10,7 @@ module Sdbport
         @access_key = args[:access_key]
         @secret_key = args[:secret_key]
         @region     = args[:region]
+        @buffer     = {}
       end
 
       def import(input)
@@ -21,8 +22,10 @@ module Sdbport
 
         file = File.open(input, 'r')
         while (line = file.gets)
-          add_line line
+          add_line_to_buffer line
+          write_buffer if @buffer.count == 25
         end
+        write_buffer
         true
       end
 
@@ -32,14 +35,20 @@ module Sdbport
         sdb.create_domain_unless_present @name
       end
 
-      def add_line(line)
+      def write_buffer
+        @logger.debug "Writing #{@buffer.count} entries to SimpleDB."
+        sdb.batch_put_attributes @name, @buffer
+        @buffer.clear
+      end
+
+      def add_line_to_buffer(line)
         line.chomp!
         data       = JSON.parse line
         id         = data.first
         attributes = data.last
 
         @logger.debug "Adding #{id} with attributes #{attributes.to_s}."
-        sdb.put_attributes @name, id, attributes
+        @buffer.merge!({ id => attributes })
       end
 
       def ensure_domain_empty
