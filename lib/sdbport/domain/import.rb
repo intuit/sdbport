@@ -23,23 +23,13 @@ module Sdbport
         file = File.open(input, 'r')
         while (line = file.gets)
           add_line_to_buffer line
-          write_buffer if @buffer.count == 25
+          write_buffer if buffer_full? 
         end
-        write_buffer
+        write_buffer unless buffer_empty?
         true
       end
 
       private
-
-      def create_domain
-        sdb.create_domain_unless_present @name
-      end
-
-      def write_buffer
-        @logger.debug "Writing #{@buffer.count} entries to SimpleDB."
-        sdb.batch_put_attributes @name, @buffer
-        @buffer.clear
-      end
 
       def add_line_to_buffer(line)
         line.chomp!
@@ -51,6 +41,20 @@ module Sdbport
         @buffer.merge!({ id => attributes })
       end
 
+      def buffer_full?
+        @buffer.count > 24
+      end
+
+      def buffer_empty?
+        @buffer.count.zero?
+      end
+
+      def write_buffer
+        @logger.debug "Writing #{@buffer.count} entries to SimpleDB."
+        sdb.batch_put_attributes @name, @buffer
+        @buffer.clear
+      end
+
       def ensure_domain_empty
         if sdb.domain_empty? @name
           true
@@ -58,6 +62,10 @@ module Sdbport
           @logger.error "Domain #{@name} in #{@region} not empty."
           false
         end
+      end
+
+      def create_domain
+        sdb.create_domain_unless_present @name
       end
 
       def sdb
