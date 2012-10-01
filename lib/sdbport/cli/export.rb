@@ -18,9 +18,7 @@ module Sdbport
                             :access_key => access_key,
                             :secret_key => secret_key,
                             :logger     => logger
-        unless domain.export opts[:output]
-          exit 1
-        end
+        exit 1 unless domain.export opts[:output]
       end
 
       def read_options

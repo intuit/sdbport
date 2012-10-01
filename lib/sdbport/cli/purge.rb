@@ -18,9 +18,7 @@ module Sdbport
                             :access_key => access_key,
                             :secret_key => secret_key,
                             :logger     => logger
-        unless domain.purge
-          exit 1
-        end
+        exit 1 unless domain.purge
       end
 
       def read_options
