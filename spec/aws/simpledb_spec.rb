@@ -22,15 +22,6 @@ describe Sdbport do
     @sdb.domains.should == ['domain1']
   end
 
-  it "should perform select query given" do
-    @fog_mock.should_receive(:select).
-              with('select * from name', 'ConsistentRead' => true).
-              and_return @body_stub
-    @body_stub.stub :body => 'thegoods'
-    @sdb.select('select * from name', 'ConsistentRead' => true).
-         should == 'thegoods'
-  end
-
   it "should perform select query given and next tokens" do
     body_stub0 = stub 'body0', :body => { 'Items' => 
                                             { 'id1' => 'val1' }, 
@@ -78,8 +69,10 @@ describe Sdbport do
   end
 
   it "should update the attributes for an item" do
-    @fog_mock.should_receive(:put_attributes).with('domain', 'key', {'key' => 'value'}, { "option" => "123" })
-    @sdb.put_attributes('domain', 'key', {'key' => 'value'}, { "option" => "123" })
+    @fog_mock.should_receive(:batch_put_attributes).with('domain', { 'item1' => { 'key1' => 'value1' }, 
+                                                                     'item2' => { 'key2' => 'value2' } })
+    @sdb.batch_put_attributes('domain', { 'item1' => { 'key1' => 'value1' },
+                                          'item2' => { 'key2' => 'value2' } })
   end
 
   context "testing counts" do

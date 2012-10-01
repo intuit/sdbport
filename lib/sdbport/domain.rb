@@ -1,3 +1,4 @@
+require 'sdbport/domain/destroy'
 require 'sdbport/domain/export'
 require 'sdbport/domain/import'
 require 'sdbport/domain/purge'
@@ -21,14 +22,22 @@ module Sdbport
       domain_purge.purge
     end
 
+    def destroy
+      domain_destroy.destroy
+    end
+
     private
 
-    def domain_import
-      @domain_import ||= Domain::Import.new @args
+    def domain_destroy
+      @domain_destroy ||= Domain::Destroy.new @args
     end
 
     def domain_export
       @domain_export ||= Domain::Export.new @args
+    end
+
+    def domain_import
+      @domain_import ||= Domain::Import.new @args
     end
 
     def domain_purge

@@ -1,4 +1,5 @@
 require 'trollop'
+require 'sdbport/cli/destroy'
 require 'sdbport/cli/export'
 require 'sdbport/cli/import'
 require 'sdbport/cli/purge'
@@ -11,6 +12,8 @@ module Sdbport
       cmd = ARGV.shift
 
       case cmd
+      when 'destroy'
+        CLI::Destroy.new.destroy
       when 'export'
         CLI::Export.new.export
       when 'import'
@@ -21,7 +24,7 @@ module Sdbport
         puts Sdbport::VERSION
       else
         puts "Unkown command: '#{cmd}'." unless cmd == '-h'
-        puts "sdbport [export|import|purge] OPTIONS"
+        puts "sdbport [destroy|export|import|purge] OPTIONS"
         puts "Append -h for help on specific subcommand."
       end
  
