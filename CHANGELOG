@@ -1,5 +1,6 @@
 ## HEAD:
 
+* Added destroy subcommand
 * Batch put attributes in sets of 25
 
 ## 0.1.1:
