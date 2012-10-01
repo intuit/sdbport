@@ -43,7 +43,6 @@ sdbport export -h
 
 ## Known Limitations
 
-* Single serialiazed process for import. Need to switch to batch put attributes.
 * Only supports importing into empty domain.
 
 ## Contributing

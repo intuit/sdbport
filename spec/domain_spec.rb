@@ -30,4 +30,10 @@ describe Sdbport do
     @domain.purge.should be_true
   end
 
+  it "should call domain_destroy" do
+    Sdbport::Domain::Destroy.stub :new => @mock
+    @mock.should_receive(:destroy).and_return true
+    @domain.destroy.should be_true
+  end
+
 end
