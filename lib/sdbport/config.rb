@@ -1,9 +1,9 @@
 module Sdbport
   class Config
 
-    attr_accessor :access_key, :secret_key
+    attr_reader :access_key, :secret_key
 
-    def initialize(args = {})
+    def initialize
       @config = load_config_file
       @access_key = @config.fetch 'access_key', nil
       @secret_key = @config.fetch 'secret_key', nil

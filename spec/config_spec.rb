@@ -7,12 +7,6 @@ describe Sdbport do
                 'secret_key ' => 'secret' }
   end
 
-  it "should create a new config object from the hash passed as config" do
-    config = Sdbport::Config.new :config => @config
-    config.access_key.should == @config['access_key']
-    config.secret_key.should == @config['secret_key']
-  end
-
   it "should create a new config object and read from ~/.sdbport.yml" do
     File.stub :exists? => true
     File.should_receive(:open).
