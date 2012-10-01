@@ -2,17 +2,23 @@ module Sdbport
   class CLI
     class Export
 
+      def initialize(args)
+        @default_access_key = args[:access_key]
+        @default_secret_key = args[:secret_key]
+      end
+
       def export
-        opts   = read_options
+        opts       = read_options
+        access_key = opts[:access_key] || @default_access_key
+        secret_key = opts[:secret_key] || @default_secret_key
+
         logger = SdbportLogger.new :log_level => opts[:level]
         domain = Domain.new :name       => opts[:name],
                             :region     => opts[:region],
-                            :access_key => opts[:access_key],
-                            :secret_key => opts[:secret_key],
+                            :access_key => access_key,
+                            :secret_key => secret_key,
                             :logger     => logger
-        unless domain.export opts[:output]
-          exit 1
-        end
+        exit 1 unless domain.export opts[:output]
       end
 
       def read_options

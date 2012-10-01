@@ -17,6 +17,15 @@ export AWS_ACCESS_KEY_ID=key
 export AWS_SECRET_ACCESS_KEY=secret
 ```
 
+Or create a config file (-a and -s can then be ommited):
+
+```
+cat > ~/.sdbport.yml << EOF
+access_key: your_aws_key
+secret_key: your_aws_secert
+EOF
+```
+
 Export SimpleDB domain:
 
 ```
