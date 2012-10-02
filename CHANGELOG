@@ -1,6 +1,6 @@
-## HEAD:
+## 0.3.0:
 
-* Adding support for reading multiple env configs
+* Added support for reading multiple env configs
 
 ## 0.2.1:
 
