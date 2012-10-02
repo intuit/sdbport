@@ -8,7 +8,27 @@ Sdbport exports & imports data from AWS SimpleDB domains. It can be used as a cl
 
 gem install sdbport
 
-## Usage
+## Getting Started
+
+Set your AWS credentials:
+
+```
+export AWS_ACCESS_KEY_ID=key
+export AWS_SECRET_ACCESS_KEY=secret
+```
+
+Export SimpleDB domain from us-west-1:
+
+```
+sdbport export -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump
+```
+
+Import into domain in us-east-1
+
+```
+sdbport import -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -i /tmp/test-domain-dump
+
+## Exporting and importing from multiple accounts.
 
 You can specify your credentials on the command line, however it is best to add them to a configuration file.
 
