@@ -13,8 +13,8 @@ gem install sdbport
 Set your AWS credentials:
 
 ```
-export AWS_ACCESS_KEY_ID=key
-export AWS_SECRET_ACCESS_KEY=secret
+export AWS_ACCESS_KEY_ID=your_aws_key
+export AWS_SECRET_ACCESS_KEY=your_aws_secret
 ```
 
 Export SimpleDB domain from us-west-1:
