@@ -10,7 +10,9 @@ gem install sdbport
 
 ## Usage
 
-Add your AWS credentials to .sdbport.yml in your home directory. By default, sdbport will use the 'default' credentials.
+You can specify your credentials on the command line, however it is best to add them to a configuration file.
+
+By default, sdbport look for .sdbport.yml in your home directory. To get started, add you AWS keys.
 
 ```
 cat > ~/.sdbport.yml << EOF
