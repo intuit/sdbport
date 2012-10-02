@@ -12,7 +12,7 @@ module Sdbport
       cmd = ARGV.shift
 
       case cmd
-      when 'destroy'
+      when 'destroy', 'delete'
         CLI::Destroy.new.destroy
       when 'export'
         CLI::Export.new.export
