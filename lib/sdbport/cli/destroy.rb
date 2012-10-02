@@ -39,7 +39,7 @@ EOS
                                                :default => 'default'
           opt :level, "Log Level", :type => :string, :default => 'info'
           opt :name, "Simple DB Domain Name", :type => :string
-          opt :region, "AWS region", :type => :string
+          opt :region, "AWS Region", :type => :string
           opt :access_key, "AWS Access Key ID", :type  => :string,
                                                 :short => 'k'
           opt :secret_key, "AWS Secret Access Key", :type => :string
