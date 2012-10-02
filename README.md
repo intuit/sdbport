@@ -10,32 +10,39 @@ gem install sdbport
 
 ## Usage
 
-Set your AWS credentials:
-
-```
-export AWS_ACCESS_KEY_ID=key
-export AWS_SECRET_ACCESS_KEY=secret
-```
-
-Or create a config file (-a and -s can then be ommited):
+Add your AWS credentials to .sdbport.yml in your home directory. By default, sdbport will use the 'default' credentials.
 
 ```
 cat > ~/.sdbport.yml << EOF
-access_key: your_aws_key
-secret_key: your_aws_secert
+default:
+  access_key: your_aws_key
+  secret_key: your_aws_secert
 EOF
 ```
 
-Export SimpleDB domain:
+You can add multiple account credentials and specify the account with --account (-a).
 
 ```
-sdbport export -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n test -o /tmp/test-domain-dump
+cat > ~/.sdbport.yml << EOF
+prod:
+  access_key: your_aws_key
+  secret_key: your_aws_secert
+preprod:
+  access_key: your_aws_key
+  secret_key: your_aws_secert
+EOF
 ```
 
-Import into new domain:
+Export SimpleDB domain data from prod account in us-west-1:
 
 ```
-sdbport import -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n new-domain -i /tmp/test-domain-dump
+sdbport export -a prod -r us-west-1 -n data -o /tmp/data-domain-dump
+```
+
+Import into preprod account in us-east-1:
+
+```
+sdbport import -a preprod -r us-east-1 -n data -i /tmp/data-domain-dump
 ```
 
 To list CLI subcommands:

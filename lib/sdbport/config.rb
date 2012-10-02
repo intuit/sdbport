@@ -5,17 +5,17 @@ module Sdbport
       @config = load_config_file
     end
 
-    def access_key(env)
-      if @config.has_key? env
-        @config[env].fetch 'access_key', nil
+    def access_key(account)
+      if @config.has_key? account
+        @config[account].fetch 'access_key', nil
       else
         nil
       end
     end
 
-    def secret_key(env)
-      if @config.has_key? env
-        @config[env].fetch 'secret_key', nil
+    def secret_key(account)
+      if @config.has_key? account
+        @config[account].fetch 'secret_key', nil
       else
         nil
       end
