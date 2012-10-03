@@ -27,6 +27,7 @@ Import into domain in us-east-1
 
 ```
 sdbport import -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -i /tmp/test-domain-dump
+```
 
 ## Exporting and importing from multiple accounts.
 
