@@ -6,7 +6,9 @@ Sdbport exports & imports data from AWS SimpleDB domains. It can be used as a cl
 
 ## Installation
 
+```
 gem install sdbport
+```
 
 ## Getting Started
 
