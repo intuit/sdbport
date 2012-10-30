@@ -35,15 +35,15 @@ module Sdbport
         end
       end
 
-      def select_and_store_tokens(query, options = {})
-        options.merge! 'NextToken' => @next_token
+      def select_and_store_chunk_of_tokens(query, options = {})
+        options.merge! 'NextToken' => @token_for_next_chunk
         chunk = sdb.select(query, options).body
-        @next_token = chunk['NextToken']
+        @token_for_next_chunk = chunk['NextToken']
         return chunk['Items']
       end
 
-      def no_more_chunks?
-        @next_token.nil?
+      def more_chunks?
+        @token_for_next_chunk != nil
       end
 
       def count(domain)

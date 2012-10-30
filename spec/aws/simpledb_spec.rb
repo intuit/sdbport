@@ -49,6 +49,29 @@ describe Sdbport do
                      'id3' => 'val3' }
   end
 
+  it "should perform select query given and store next token" do
+    body_stub0 = stub 'body0', :body => { 'Items' => 
+                                            { 'id1' => 'val1' }, 
+                                          'NextToken' => '1' 
+                                        }
+    body_stub1 = stub 'body1', :body => { 'Items' => 
+                                            { 'id2' => 'val2' }, 
+                                          'NextToken' => nil
+                                        }
+    @fog_mock.should_receive(:select).
+              with('select * from name', 'NextToken' => nil).
+              and_return body_stub0
+    @sdb.select_and_store_chunk_of_tokens('select * from name').
+         should == { 'id1' => 'val1' }
+    @sdb.more_chunks?.should be_true
+    @fog_mock.should_receive(:select).
+              with('select * from name', 'NextToken' => '1').
+              and_return body_stub1
+    @sdb.select_and_store_chunk_of_tokens('select * from name').
+         should == { 'id2' => 'val2' }
+    @sdb.more_chunks?.should be_false
+  end
+
   it "should create a new domain when it does not exist" do
     @fog_mock.stub :list_domains => @body_stub
     @body_stub.stub :body => { 'Domains' => [] }

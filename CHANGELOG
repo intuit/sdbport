@@ -1,3 +1,9 @@
+## HEAD:
+
+* Added sequential export
+* Added specs for CLI
+* Updated README
+
 ## 0.3.0:
 
 * Added support for reading multiple env configs
