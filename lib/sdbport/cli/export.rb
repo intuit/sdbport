@@ -19,7 +19,12 @@ module Sdbport
                             :access_key => access_key,
                             :secret_key => secret_key,
                             :logger     => logger
-        exit 1 unless domain.export opts[:output]
+
+        if opts[:write_as_you_go]
+          exit 1 unless domain.export_sequential_write opts[:output]
+        else
+          exit 1 unless domain.export opts[:output]
+        end
       end
 
       def read_options
@@ -44,6 +49,7 @@ EOS
           opt :access_key, "AWS Access Key ID", :type  => :string,
                                                 :short => 'k'
           opt :secret_key, "AWS Secret Access Key", :type => :string
+          opt :write_as_you_go, "Write chunks as they are received from Simple DB", :type => :string
         end
       end
     end
