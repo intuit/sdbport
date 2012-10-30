@@ -19,6 +19,6 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rspec"
 
-  gem.add_runtime_dependency "fog"
-  gem.add_runtime_dependency "trollop"
+  gem.add_runtime_dependency "fog", "= 1.6.0"
+  gem.add_runtime_dependency "trollop", "= 2.0"
 end
