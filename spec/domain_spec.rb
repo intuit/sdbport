@@ -15,13 +15,22 @@ describe Sdbport do
     @domain.import('/tmp/file').should be_true
   end
 
-  it "should call domain_export from the given output" do
+  it "should call export from the given output" do
     Sdbport::Domain::Export.should_receive(:new).
                             with(:args1 => 'val1').
                             and_return @mock
     @mock.should_receive(:export).with('/tmp/file').
           and_return true
     @domain.export('/tmp/file').should be_true
+  end
+
+  it "should call export_sequential_write with the given output" do
+    Sdbport::Domain::Export.should_receive(:new).
+                            with(:args1 => 'val1').
+                            and_return @mock
+    @mock.should_receive(:export_sequential_write).with('/tmp/file').
+          and_return true
+    @domain.export_sequential_write('/tmp/file').should be_true
   end
 
   it "should call domain_purge" do

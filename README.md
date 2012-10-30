@@ -25,10 +25,10 @@ Export SimpleDB domain from us-west-1:
 sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump
 ```
 
-Export larger SimpleDB domain from us-west-1 - writes each chunk to file as it is received rather than storing in memory:
+To export larger SimpleDB domains, add -w.  This writes each chunk to file as it is received rather than storing in memory:
 
 ```
-sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump -w yes
+sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump -w
 ```
 
 Import into domain in us-east-1

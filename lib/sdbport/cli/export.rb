@@ -49,7 +49,7 @@ EOS
           opt :access_key, "AWS Access Key ID", :type  => :string,
                                                 :short => 'k'
           opt :secret_key, "AWS Secret Access Key", :type => :string
-          opt :write_as_you_go, "Write chunks as they are received from Simple DB", :type => :string
+          opt :write_as_you_go, "Write chunks to disk as they are received from Simple DB"
         end
       end
     end
