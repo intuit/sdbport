@@ -35,6 +35,17 @@ module Sdbport
         end
       end
 
+      def select_and_store_tokens(query, options = {})
+        options.merge! 'NextToken' => @next_token
+        chunk = sdb.select(query, options).body
+        @next_token = chunk['NextToken']
+        return chunk['Items']
+      end
+
+      def no_more_chunks?
+        @next_token.nil?
+      end
+
       def count(domain)
         body = sdb.select("SELECT count(*) FROM `#{domain}`").body
         body['Items']['Domain']['Count'].first.to_i

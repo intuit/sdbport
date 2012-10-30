@@ -22,13 +22,19 @@ export AWS_SECRET_ACCESS_KEY=your_aws_secret
 Export SimpleDB domain from us-west-1:
 
 ```
-sdbport export -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump
+sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump
+```
+
+Export larger SimpleDB domain from us-west-1 - writes each chunk to file as it is received rather than storing in memory:
+
+```
+sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump -w yes
 ```
 
 Import into domain in us-east-1
 
 ```
-sdbport import -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -i /tmp/test-domain-dump
+sdbport import -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -i /tmp/test-domain-dump
 ```
 
 ## Exporting and importing from multiple accounts.
