@@ -18,6 +18,10 @@ module Sdbport
       domain_export.export output
     end
 
+    def export_sequential_write(output)
+      domain_export.export_sequential_write output
+    end
+
     def purge
       domain_purge.purge
     end
