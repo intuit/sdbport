@@ -57,7 +57,19 @@ module Sdbport
       end
 
       def convert_to_string(item)
-        item.to_json
+        id         = item.first
+        attributes = format_attributes item.last
+
+        [id, attributes].to_json
+      end
+
+      # Converts nil values to empty strings
+      def format_attributes(data)
+        data.each do |k, v|
+          data[k] = v.map { |x| x.nil? ? "" : x }
+        end
+
+        data
       end
 
     end

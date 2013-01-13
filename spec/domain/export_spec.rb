@@ -30,6 +30,21 @@ describe Sdbport do
     @export.export('/tmp/file').should be_true
   end
 
+  it "should convert null entries to empty stirngs" do
+    File.should_receive(:open).with('/tmp/file', 'w').
+                               and_return @file_mock
+    data = { 'item1' => 
+             { 'attribute' => [ nil, 'test' ] }
+           }
+    @sdb_mock.should_receive(:select_and_follow_tokens).
+              with('select * from `name`').
+              and_return data
+    @file_mock.should_receive(:write).with("[\"item1\",{\"attribute\":[\"\",\"test\"]}]")
+    @file_mock.should_receive(:write).with("\n")
+    @file_mock.should_receive(:close).and_return nil
+    @export.export('/tmp/file').should be_true
+  end
+
   it "should export the given domain sequentially to disk" do
     File.should_receive(:open).with('/tmp/file', 'w').
                                and_return @file_mock
