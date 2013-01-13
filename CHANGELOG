@@ -1,3 +1,7 @@
+## 0.4.1:
+
+* Fixed bug where empty values were exported incorrectly
+
 ## 0.4.0:
 
 * Added sequential export
