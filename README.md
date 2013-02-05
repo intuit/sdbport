@@ -37,7 +37,7 @@ By default, sdbport look for .sdbport.yml in your home directory. To get started
       access_key: your_aws_key
       secret_key: your_aws_secert
 
-You can add multiple account credentials and specify the account with --account (-a).
+You can add multiple account credentials and specify the account as a CLI option with **--account (-a)**.
 
     prod:
       access_key: your_aws_key
