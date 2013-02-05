@@ -6,65 +6,47 @@ Sdbport exports & imports data from AWS SimpleDB domains. It can be used as a cl
 
 ## Installation
 
-```
-gem install sdbport
-```
+    gem install sdbport
 
 ## Getting Started
 
 Set your AWS credentials:
 
-```
-export AWS_ACCESS_KEY_ID=your_aws_key
-export AWS_SECRET_ACCESS_KEY=your_aws_secret
-```
+    export AWS_ACCESS_KEY_ID=your_aws_key
+    export AWS_SECRET_ACCESS_KEY=your_aws_secret
 
-Export SimpleDB domain from us-west-1:
+Export SimpleDB domain 'data' from us-west-1:
 
-```
-sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump
-```
+    sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump
 
 To export larger SimpleDB domains, add -w.  This writes each chunk to file as it is received rather than storing in memory:
 
-```
-sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump -w
-```
+    sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump -w
 
 Import into domain in us-east-1
 
-```
-sdbport import -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -i /tmp/test-domain-dump
-```
+    sdbport import -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -i /tmp/test-domain-dump
 
 ## Exporting and importing from multiple accounts.
 
 You can specify your credentials on the command line, however it is best to add them to a configuration file.
 
-By default, sdbport look for .sdbport.yml in your home directory. To get started, add you AWS keys.
+By default, sdbport look for .sdbport.yml in your home directory. To get started, create the file **~/.sdbport.yml**:
 
-```
-cat > ~/.sdbport.yml << EOF
-default:
-  access_key: your_aws_key
-  secret_key: your_aws_secert
-EOF
-```
+    default:
+      access_key: your_aws_key
+      secret_key: your_aws_secert
 
 You can add multiple account credentials and specify the account with --account (-a).
 
-```
-cat > ~/.sdbport.yml << EOF
-prod:
-  access_key: your_aws_key
-  secret_key: your_aws_secert
-preprod:
-  access_key: your_aws_key
-  secret_key: your_aws_secert
-EOF
-```
+    prod:
+      access_key: your_aws_key
+      secret_key: your_aws_secert
+    preprod:
+      access_key: your_aws_key
+      secret_key: your_aws_secert
 
-Export SimpleDB domain data from prod account in us-west-1:
+Export SimpleDB domain 'data' from prod account in us-west-1:
 
 ```
 sdbport export -a prod -r us-west-1 -n data -o /tmp/data-domain-dump
@@ -91,6 +73,10 @@ sdbport export -h
 ## Known Limitations
 
 * Only supports importing into empty domain.
+
+## Packages
+
+* To build packages for another platform, see [omnibus-sdbport](https://github.com/brettweavnet/omnibus-sdbport).
 
 ## Contributing
 
