@@ -25,7 +25,7 @@ To export larger SimpleDB domains, add -w.  This writes each chunk to file as it
 
 Import into domain **sample** in **us-east-1**:
 
-    sdbport import -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n sample -i /tmp/dump.sdbport
+    sdbport import -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-east-1 -n sample -i /tmp/dump.sdbport
 
 ## Exporting and importing from multiple accounts.
 
