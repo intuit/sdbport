@@ -76,7 +76,7 @@ sdbport export -h
 
 ## Packages
 
-* Packages for CENTOS 6 / RHEL 6 are available at [sdbport-0.4.1-1.el6.x86_64.rpm](https://dl.dropbox.com/u/52486103/Packages/sdbport-0.4.1-1.el6.x86_64.rpm)
+* Packages for CENTOS 6 / RHEL 6 are available at [sdbport-0.4.1-1.el6.x86_64.rpm](http://dl.dropbox.com/u/52486103/Packages/sdbport-0.4.1-1.el6.x86_64.rpm)
 * To build packages for another platform, see [omnibus-sdbport](https://github.com/brettweavnet/omnibus-sdbport).
 
 ## Contributing
