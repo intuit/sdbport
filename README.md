@@ -27,7 +27,7 @@ Import into domain **sample** in **us-east-1**:
 
     sdbport import -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-east-1 -n sample -i /tmp/dump.sdbport
 
-## Exporting/Importing to/from multiple accounts.
+## Exporting and Importing from multiple accounts.
 
 You can specify your credentials on the command line, however it is best to add them to a configuration file.
 
@@ -70,14 +70,14 @@ For details help on specific subcommand:
 sdbport export -h
 ```
 
-## Known Limitations
-
-* Only supports importing into empty domain.
-
 ## Packages
 
 * Packages for CENTOS 6 / RHEL 6 are available at [sdbport-0.4.1-1.el6.x86_64.rpm](http://dl.dropbox.com/u/52486103/Packages/sdbport-0.4.1-1.el6.x86_64.rpm)
 * To build packages for another platform, see [omnibus-sdbport](https://github.com/brettweavnet/omnibus-sdbport).
+
+## Known Limitations
+
+* Only supports importing into empty domain.
 
 ## Contributing
 
