@@ -15,17 +15,17 @@ Set your AWS credentials:
     export AWS_ACCESS_KEY_ID=your_aws_key
     export AWS_SECRET_ACCESS_KEY=your_aws_secret
 
-Export SimpleDB domain 'data' from us-west-1:
+Export SimpleDB domain **sample** from **us-west-1**:
 
-    sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump
+    sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n sample -o /tmp/dump.sdbport
 
 To export larger SimpleDB domains, add -w.  This writes each chunk to file as it is received rather than storing in memory:
 
-    sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -o /tmp/test-domain-dump -w
+    sdbport export -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n sample -o /tmp/dump.sdbport -w
 
-Import into domain in us-east-1
+Import into domain **sample** in **us-east-1**:
 
-    sdbport import -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n data -i /tmp/test-domain-dump
+    sdbport import -k $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY -r us-west-1 -n sample -i /tmp/dump.sdbport
 
 ## Exporting and importing from multiple accounts.
 
@@ -46,16 +46,16 @@ You can add multiple account credentials and specify the account with --account 
       access_key: your_aws_key
       secret_key: your_aws_secert
 
-Export SimpleDB domain 'data' from prod account in us-west-1:
+Export SimpleDB domain **sample** from **prod** account in **us-west-1**:
 
 ```
-sdbport export -a prod -r us-west-1 -n data -o /tmp/data-domain-dump
+sdbport export -a prod -r us-west-1 -n sample -o /tmp/dump.sdbport
 ```
 
-Import into preprod account in us-east-1:
+Import into domain **sample** in **preprod** account in **us-east-1**:
 
 ```
-sdbport import -a preprod -r us-east-1 -n data -i /tmp/data-domain-dump
+sdbport import -a preprod -r us-east-1 -n sample -i /tmp/dump.sdbport
 ```
 
 To list CLI subcommands:
