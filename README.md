@@ -1,4 +1,6 @@
-[![Build Status](https://secure.travis-ci.org/brettweavnet/sdbport.png)](http://travis-ci.org/brettweavnet/sdbport)
+[![Build Status](https://secure.travis-ci.org/intuit/sdbport.png)](http://travis-ci.org/intuit/sdbport)
+
+** !!! Active Development Move To https://github.com/intuit/sdbport !!! **
 
 # Sdbport
 
@@ -69,11 +71,6 @@ For details help on specific subcommand:
 ```
 sdbport export -h
 ```
-
-## Packages
-
-* Packages for CENTOS 6 / RHEL 6 are available at [sdbport-0.4.1-1.el6.x86_64.rpm](http://dl.dropbox.com/u/52486103/Packages/sdbport-0.4.1-1.el6.x86_64.rpm)
-* To build packages for another platform, see [omnibus-sdbport](https://github.com/brettweavnet/omnibus-sdbport).
 
 ## Known Limitations
 
