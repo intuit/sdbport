@@ -1,6 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/intuit/sdbport.png)](http://travis-ci.org/intuit/sdbport)
-
-**!!! Active Development Move To https://github.com/intuit/sdbport !!!**
+**!!! Active Development Move To [intuit/sdbport](https://github.com/intuit/sdbport) !!!**
 
 # Sdbport
 
