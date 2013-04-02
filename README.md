@@ -1,4 +1,4 @@
-**!!! Active Development Move To [intuit/sdbport](https://github.com/intuit/sdbport) !!!**
+**!!! Active Development Moved To [intuit/sdbport](https://github.com/intuit/sdbport) !!!**
 
 # Sdbport
 
