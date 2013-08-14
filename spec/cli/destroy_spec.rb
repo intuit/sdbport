@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+require 'sdbport/cli'
+
 describe Sdbport::Cli::Destroy do
   before do
     @domain_mock = mock "domain"

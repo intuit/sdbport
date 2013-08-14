@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+require 'sdbport/cli'
+
 describe Sdbport do
   before do
     @cli_mock = mock 'cli'

@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+require 'sdbport/cli'
+
 describe Sdbport::Cli::Export do
   before do
     @domain_mock = mock "domain"
