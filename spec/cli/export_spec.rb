@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Sdbport::CLI::Export do
+describe Sdbport::Cli::Export do
   before do
     @domain_mock = mock "domain"
     @logger_stub = stub "logger"
@@ -14,7 +14,7 @@ describe Sdbport::CLI::Export do
     Sdbport::SdbportLogger.should_receive(:new).
                            with(:log_level => 'debug').
                            and_return @logger_stub
-    @export = Sdbport::CLI::Export.new
+    @export = Sdbport::Cli::Export.new
   end
 
   it "should perform a in memeory write" do

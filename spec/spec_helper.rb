@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 
 require 'sdbport'
+require 'sdbport/cli'
 
 def sdb_mock
   sdb_mock = mock 'simpledb'

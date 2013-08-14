@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Sdbport::CLI::Import do
+describe Sdbport::Cli::Import do
   before do
     @domain_mock = mock "domain"
     @logger_stub = stub "logger"
@@ -14,7 +14,7 @@ describe Sdbport::CLI::Import do
     Sdbport::SdbportLogger.should_receive(:new).
                            with(:log_level => 'debug').
                            and_return @logger_stub
-    @import = Sdbport::CLI::Import.new
+    @import = Sdbport::Cli::Import.new
   end
 
   it "should perform an import from file" do

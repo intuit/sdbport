@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Sdbport::CLI::Destroy do
+describe Sdbport::Cli::Destroy do
   before do
     @domain_mock = mock "domain"
     @logger_stub = stub "logger"
@@ -13,7 +13,7 @@ describe Sdbport::CLI::Destroy do
     Sdbport::SdbportLogger.should_receive(:new).
                            with(:log_level => 'debug').
                            and_return @logger_stub
-    @destroy = Sdbport::CLI::Destroy.new
+    @destroy = Sdbport::Cli::Destroy.new
   end
 
   it "should perform destroy the domain" do
