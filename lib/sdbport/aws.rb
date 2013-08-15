@@ -1,0 +1,1 @@
+require "sdbport/aws/simpledb"

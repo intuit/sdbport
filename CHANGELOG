@@ -1,7 +1,7 @@
 ## HEAD:
 
-* Moved to https://github.com/intuit/sdbport
-* Bug fix for Ruby 2.0.0
+* Moved to Intuit repo
+* Fixes for Ruby 2.0.0
 
 ## 0.4.1:
 
