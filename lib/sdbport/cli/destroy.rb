@@ -1,5 +1,5 @@
 module Sdbport
-  class CLI
+  module Cli
     class Destroy
 
       def initialize

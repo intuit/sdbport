@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Sdbport::CLI::Purge do
+describe Sdbport::Cli::Purge do
   before do
     @domain_mock = mock "domain"
     @logger_stub = stub "logger"
@@ -13,7 +13,7 @@ describe Sdbport::CLI::Purge do
     Sdbport::SdbportLogger.should_receive(:new).
                            with(:log_level => 'debug').
                            and_return @logger_stub
-    @purge = Sdbport::CLI::Purge.new
+    @purge = Sdbport::Cli::Purge.new
   end
 
   it "should perform a purge on the domain" do
