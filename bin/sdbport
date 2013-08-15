@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'sdbport'
+require 'sdbport/cli'
+
+Sdbport::Cli::Run.new.start
