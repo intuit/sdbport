@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-require 'sdbport/cli'
-
 describe Sdbport::Cli::Purge do
   before do
     @domain_mock = mock "domain"
