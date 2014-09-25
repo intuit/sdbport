@@ -1,5 +1,11 @@
 [![Build Status](https://secure.travis-ci.org/intuit/sdbport.png)](http://travis-ci.org/intuit/sdbport)
 
+**sdbport is in maintenance mode!**
+
+**We will continue to provide best effort support for bug fix requests, however new features will not be added.**
+
+-------
+
 # Sdbport
 
 Sdbport exports & imports data from AWS SimpleDB domains. It can be used as a class or stand alone CLI.
