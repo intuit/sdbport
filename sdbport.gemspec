@@ -6,8 +6,8 @@ require 'sdbport/version'
 Gem::Specification.new do |gem|
   gem.name          = "sdbport"
   gem.version       = Sdbport::VERSION
-  gem.authors       = ["Brett Weaver"]
-  gem.email         = ["brett@weav.net"]
+  gem.authors       = ["Intuit Inc."]
+  gem.email         = ["CTO-DevOpenSource@intuit.com"]
   gem.description   = %q{Import and export AWS SimpleDB domains.}
   gem.summary       = %q{Import and export AWS SimpleDB domains.}
   gem.homepage      = ""
